@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数理逻辑实验平台 - MathLogic</title>
+    <link rel="stylesheet" href="public/css/style.css" id="main-stylesheet">
+    <link rel="icon" type="image/svg+xml" href="public/img/favicon.svg" />
+</head>
+<body>
+    <div id="app">
+        <!-- 主画布区域 -->
+        <div id="canvas-container">
+            <svg id="main-canvas" width="100%" height="100vh">
+                <!-- 网格背景 -->
+                <defs>
+                    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <circle cx="10" cy="10" r="0.75" fill="#ddd"></circle>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)"></rect>
+            </svg>
+        </div>
+
+        <!-- 控制面板 -->
+        <div id="control-panel">
+            <div class="panel-header">
+                <h2>逻辑工具</h2>
+            </div>
+
+            <!-- 变元输入区 -->
+            <div class="input-section">
+                <h3>输入变元</h3>
+                <input type="text" id="variables-input" placeholder="输入变元，如: pq 或 abc" />
+                <button id="generate-btn" class="btn btn-primary">生成变元</button>
+            </div>
+
+            <!-- 逻辑运算符区 -->
+            <div class="operators-section">
+                <h3>逻辑运算符</h3>
+                <div class="operators-grid">
+                    <button class="operator-btn" data-operator="∧" title="合取(与)">∧</button>
+                    <button class="operator-btn" data-operator="∨" title="析取(或)">∨</button>
+                    <button class="operator-btn" data-operator="~" title="否定(非)">~</button>
+                    <button class="operator-btn" data-operator="→" title="蕴含">→</button>
+                    <button class="operator-btn" data-operator="↔" title="双条件">↔</button>
+                </div>
+            </div>
+
+            <!-- 功能按钮区 -->
+            <div class="actions-section">
+                <button id="clear-btn" class="btn btn-secondary">清空画布</button>
+                <button id="truth-table-btn" class="btn btn-success">生成真值表</button>
+                <button id="random-formula-btn" class="btn btn-info">随机公式</button>
+                <button id="theme-toggle-btn" class="btn btn-secondary">切换主题</button>
+            </div>
+
+            <!-- 当前表达式显示 -->
+            <div class="current-expression">
+                <h3>当前表达式</h3>
+                <div id="expression-display">无</div>
+            </div>
+        </div>
+
+        <!-- 真值表模态框 -->
+        <div id="truth-table-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>真值表</h3>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="truth-table-container"></div>
+                    <div class="truth-table-actions">
+                        <button id="check-answers-btn" class="btn btn-primary">检查答案</button>
+                        <button id="reset-answers-btn" class="btn btn-secondary" style="display: none;">重新答题</button>
+                        <div id="result-display"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 提示气泡 -->
+        <div id="tooltip" class="tooltip"></div>
+    </div>
+
+    <script src="public/js/logic-core.js"></script>
+    <script src="public/js/ui-controller.js"></script>
+    <script src="public/js/truth-table.js"></script>
+    <script src="public/js/app.js"></script>
+</body>
+</html>
